@@ -1,6 +1,9 @@
 import { createContext, useState } from 'react';
  
-export const ChamadosContext = createContext();
+export const ChamadosContext = createContext({
+  chamados: [],
+  setChamados: () => {}
+});
  
 export function ChamadosProvider({ children }) {
   const [chamados, setChamados] = useState([]);
