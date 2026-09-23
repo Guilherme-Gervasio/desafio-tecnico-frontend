@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ChamadosProvider } from './contexts/ChamadosContext';
-import Header from './components/Header';
-import Home from './pages/Home';
-import Gerenciamento from './pages/Gerenciamento';
-import Cadastrar from './pages/Cadastrar';
-import Listar from './pages/Listar';
-import Editar from './pages/Editar';
+import { ChamadosProvider } from './contexts/ChamadosContext.jsx';
+import Header from './components/Header.jsx';
+import Home from './pages/Home.jsx';
+import Gerenciamento from './pages/Gerenciamento.jsx';
+import Cadastrar from './pages/Cadastrar.jsx';
+import Listar from './pages/Listar.jsx';
+import Editar from './pages/Editar.jsx';
 import './App.css';
  
 function App() {
@@ -13,7 +13,9 @@ function App() {
     <ChamadosProvider>
       <BrowserRouter>
         <div className="container">
+          {/* Identificação obrigatória do aluno visível em todas as páginas */}
           <Header nome="Guilherme Gervásio da Silva" />
+          
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/chamados" element={<Gerenciamento />} />
