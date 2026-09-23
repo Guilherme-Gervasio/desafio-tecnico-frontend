@@ -1,28 +1,29 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { ChamadosContext } from '../contexts/ChamadosContext';
+import { ChamadosContext } from '../contexts/ChamadosContext.jsx';
  
 export default function Editar() {
   const { id } = useParams();
   const { chamados, setChamados } = useContext(ChamadosContext);
   const navigate = useNavigate();
  
-  const [formData, setFormData] = useState({
-    titulo: '',
-    descricao: '',
-    prioridade: '1',
-    solicitante: '',
-    status: 'ABERTO'
-  });
+  const chamadoAtual = chamados.find(c => c.id === Number(id));
+ 
+  const [formData, setFormData] = useState(
+    chamadoAtual || {
+      titulo: '',
+      descricao: '',
+      prioridade: '1',
+      solicitante: '',
+      status: 'ABERTO'
+    }
+  );
  
   useEffect(() => {
-    const chamadoAtual = chamados.find(c => c.id === Number(id));
-    if (chamadoAtual) {
-      setFormData(chamadoAtual);
-    } else {
-      navigate('/chamados/listar'); // Retorna se não encontrar o ID
+    if (!chamadoAtual) {
+      navigate('/chamados/listar');
     }
-  }, [id, chamados, navigate]);
+  }, [chamadoAtual, navigate]);
  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
